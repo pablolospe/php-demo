@@ -1,15 +1,12 @@
 <?php
-declare(strict_types=1);
-
 const API_URL = "https://whenisthenextmcufilm.com/api";
-
-function get_data(string $url): array
-{
-    $result = file_get_contents($url);
-    $data = json_decode($result, true);
-    return $data;
-};
-$data = get_data(API_URL);
+$ch = curl_init(API_URL);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+$data = json_decode($result, true);
+curl_close($ch);
+//define('LOGO_URL', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1280px-PHP-logo.svg.png');
+//var_dump($data)
 ?>
 
 <head>
