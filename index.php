@@ -19,9 +19,9 @@ curl_close($ch);
 
 <main>
     <hgroup>
-        <h1>
-            <?= "La próxima peli de Marvel"; ?>
-        </h1>
+        <h2>
+            <?= "Pol te dice la próxima peli de Marvel"; ?>
+        </h2>
     </hgroup>
     <section>
         <img src="<?= "$data[poster_url]" ?>" alt="Poster" width="200">
@@ -31,6 +31,8 @@ curl_close($ch);
     <article>
         <p>
             <?= "Faltan $data[days_until] días para el estreno de <b> $data[title] </b>" ?>
+            <br>
+            <?= "Se estrena el " . date('d-m-Y', strtotime($data['release_date']))  ?>
         </p>
         <p>
             <?= "Y la próxima es <b>" .  $data['following_production']['title'] . '<b/>' ?>
@@ -55,14 +57,8 @@ curl_close($ch);
         justify-content: center;
     }
     img, p {
-        border: solid 2px black;
         border-radius: 1rem;
         text-align: center;
         padding: 0.5rem;
-    }
-    ul {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
     }
 </style>
