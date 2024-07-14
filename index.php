@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 const API_URL = "https://whenisthenextmcufilm.com/api";
@@ -10,6 +11,19 @@ function get_data(string $url): array
     return $data;
 };
 $data = get_data(API_URL);
+
+function get_until_message(int $days)
+{
+    return match (true) {
+        $days === 0 => "se estrena HOY!",
+        $days === 1 => "se estrena mañana",
+        $days === 2 => "se estrena pasado mañana",
+        $days < 7   => "se estrena esta semana",
+        $days < 30  => "se estrena este mes",
+        default     => "se estrena en $days días"
+    };
+};
+$until_message = get_until_message($data['days_until'])
 ?>
 
 <head>
@@ -34,11 +48,11 @@ $data = get_data(API_URL);
 
         <article>
             <p>
-                <?= "Faltan $data[days_until] días para el estreno de <b> $data[title] </b>" ?>
+                <?= "<b> $data[title] </b> $until_message" ?>
                 <br>
-                <?= "Se estrena el " . date('d-m-Y', strtotime($data['release_date']))  ?>
+                <?= "Fecha de estreno: " . date('d-m-Y', strtotime($data['release_date']))  ?>
                 <br>
-                <?= "Y la próxima es <b>" .  $data['following_production']['title'] . '<b/>' ?>
+                <?= "Y lo próximo es <b>" .  $data['following_production']['title'] . '<b/>' ?>
             </p>
         </article>
     </main>
@@ -56,10 +70,9 @@ $data = get_data(API_URL);
         place-content: center;
     }
 
-    hgroup {
+    hgroup, article {
         text-align: center;
     }
-
     section {
         display: flex;
         justify-content: space-between;
@@ -68,12 +81,12 @@ $data = get_data(API_URL);
         border-radius: 1rem;
         text-align: center;
         padding: 0.5rem;
-        transition: filter 0.3s, transform 0.5s;
+        transition: filter 0.3s, transform 0.9s;
     }
 
     img:hover {
         transform: 1s;
         filter: drop-shadow(6px 6px 16px white);
-        transform: scale(0.8) rotate(360deg);
+        transform: scale(0.8) rotate(720deg);
     }
 </style>
