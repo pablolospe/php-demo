@@ -12,6 +12,8 @@
     hgroup,
     article {
         text-align: center;
+        border-radius: 1rem;
+        filter: drop-shadow(1px 1px 36px black);
     }
 
     section {
@@ -34,7 +36,8 @@
         img:hover {
             transform: 1s;
             filter: drop-shadow(6px 6px 16px black);
-            transform: scale(0.8) rotate(720deg);
+            transform: scale(1.05) rotate(5deg);
+            
         }
         header,
         footer {

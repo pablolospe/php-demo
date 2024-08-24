@@ -2,9 +2,6 @@
 
 class SuperHero
 {
-    // Propiedades 
-
-
     // Constructor
     public function __construct(
         readonly public string $name,

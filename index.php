@@ -2,11 +2,15 @@
 
 require_once 'consts.php';
 require_once 'functions.php';
+require_once 'classes/NextMovie.php';
+
+$next_movie = NextMovie::fetch_and_create_movie(API_URL);
+$data = $next_movie->get_data()
 // require 'functions.php'; //=> usar sinel  _once si necesitamos importar mas de una vez el módulo
 // include 'archivo-inexistente.php'; // -> el Include es como el require, pero no rompe
 
-$data = get_data(API_URL);
-$until_message = get_until_message($data['days_until'])
+// $data = get_data(API_URL);
+// $until_message = get_until_message($data['days_until'])
 ?>
 
 <?php render_template('head', $data); ?>
