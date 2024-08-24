@@ -10,6 +10,7 @@ class NextMovie
         private int $days_until,
         private array $following_production,
         private string $poster_url,
+        private string $release_date,
     ) {}
 
     // Métodos
@@ -38,6 +39,7 @@ class NextMovie
             $data["days_until"],
             $data["following_production"],
             $data["poster_url"],
+            $data["release_date"],
         );
     }
     public function get_data()
